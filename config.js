@@ -3,13 +3,45 @@
 // ⚙️ ملف الإعدادات الرئيسي للمتجر
 // =============================================================================
 
-const STOREMASTER_LICENSE = {
-    storeId: "__STOREMASTER_STORE_ID__",
-    token: "__STOREMASTER_TOKEN__"
-};
-
 const STORE_CONFIG = {
-  "PRODUCTS": {},
+  "PRODUCTS": {
+    "1789057980512": {
+      "name": "Ensemble POLO",
+      "price": 58455,
+      "description": "",
+      "category": "",
+      "stock": 0,
+      "featured": false,
+      "availableColors": [
+        "أسود"
+      ],
+      "availableSizes": [
+        "S"
+      ],
+      "ageRanges": [],
+      "colorImages": {
+        "أسود": {
+          "images": [
+            "https://raw.githubusercontent.com/one-wil/hassoun/main/images/product-1789057980512-أسود-1789058101896-Screenshot-20260909-094634-Samsung-Browser.jpg"
+          ],
+          "ageRanges": [
+            {
+              "ageFrom": " ",
+              "ageTo": " ",
+              "size": "S"
+            }
+          ]
+        }
+      },
+      "sizeGuide": {
+        "enabled": false,
+        "guide": {}
+      },
+      "createdAt": "2026-09-10T16:33:00.513Z",
+      "image": "https://raw.githubusercontent.com/one-wil/hassoun/main/images/product-1789057980512-1789058061546-Screenshot-20260907-204806-Samsung-Browser.jpg",
+      "updatedAt": "2026-09-10T16:34:45.655Z"
+    }
+  },
   "PRODUCT_ORDER": {},
   "DELIVERY_PRICES": {
     "01 - أدرار": {
@@ -277,7 +309,7 @@ const STORE_CONFIG = {
     "promoDiscountProducts": []
   },
   "STORE_INFO": {
-    "name": "",
+    "name": "Hassoun",
     "storeIcon": "-",
     "storeTitle": "-",
     "tagline": "",
@@ -1234,7 +1266,8 @@ const STORE_CONFIG = {
     "مسك",
     "عنبر"
   ],
-  "ORDERS": []
+  "ORDERS": [],
+  "LICENSE_SERVER": "https://storemaster-worker.vivavoir150.workers.dev"
 };
 
 // =============================================================================
