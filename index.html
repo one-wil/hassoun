@@ -14021,7 +14021,7 @@ header .header-content{min-height:68px!important}
 <script id="nova-adaptive-template-script-v1">
 (function(){
  'use strict';
- const TYPES={clothing:{label:'ملابس',icon:'fa-shirt'},footwear:{label:'أحذية',icon:'fa-shoe-prints'},beauty:{label:'عطور وتجميل',icon:'fa-spray-can-sparkles'},accessories:{label:'إكسسوارات',icon:'fa-gem'},other:{label:'منتجات أخرى',icon:'fa-sparkles'}};
+ const TYPES={clothing:{label:'إختيار مميز',icon:''},footwear:{label:'أحذية',icon:'fa-shoe-prints'},beauty:{label:'عطور وتجميل',icon:'fa-spray-can-sparkles'},accessories:{label:'إكسسوارات',icon:'fa-gem'},other:{label:'منتجات أخرى',icon:'fa-sparkles'}};
  const patterns={
   footwear:/حذاء|أحذية|صباط|سبادري|سنيكر|sneaker|shoes?|baskets?|chaussures?|sandales?|بوت\b|boot\b/i,
   beauty:/عطر|عطور|برفان|parfum|perfume|cosm[eé]tique|كريم|كريمات|pom(m)?ade|روج|مكياج|maquillage|lipstick|serum|سيروم|shampoo|شامبو|مزيل العرق/i,
@@ -14047,7 +14047,7 @@ header .header-content{min-height:68px!important}
    card.classList.remove('nova-type-clothing','nova-type-footwear','nova-type-beauty','nova-type-accessories','nova-type-other');
    card.classList.add('nova-type-'+type);card.dataset.novaType=type;card.style.setProperty('--nova-index',String(i%8));
    const tag=card.querySelector('.premium-product-tag');
-   if(tag){tag.innerHTML='<i class="fas '+TYPES[type].icon+'"></i> '+TYPES[type].label;tag.setAttribute('aria-label',TYPES[type].label);}
+   if(tag){tag.innerHTML=type==='clothing'?TYPES[type].label:'<i class="fas '+TYPES[type].icon+'"></i> '+TYPES[type].label;tag.setAttribute('aria-label',TYPES[type].label);}
    const kicker=card.querySelector('.premium-kicker');if(kicker)kicker.textContent=TYPES[type].label.toUpperCase();
    const media=card.querySelector('.premium-product-media');if(media)media.setAttribute('data-product-kind',type);
   });
