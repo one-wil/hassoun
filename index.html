@@ -5873,6 +5873,49 @@ input[placeholder*="الوصف"]{
   #page2 .smart-back-btn{max-width:40%!important;padding:7px 8px!important}
 }
 </style>
+
+<style id="smart-back-button-fit-fix">
+/* تصغير نص وسهم زر الرجوع حتى تبقى العبارة كاملة داخل الزر */
+#page2 .smart-back-btn{
+  min-width:0 !important;
+  max-width:43% !important;
+  width:auto !important;
+  min-height:42px !important;
+  padding:7px 10px !important;
+  gap:5px !important;
+  font-size:clamp(.54rem, 2.5vw, .76rem) !important;
+  line-height:1.25 !important;
+  white-space:normal !important;
+  flex:0 1 auto !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+#page2 .smart-back-btn span{
+  display:block !important;
+  min-width:0 !important;
+  font-size:inherit !important;
+  line-height:inherit !important;
+  text-align:center !important;
+  overflow-wrap:normal !important;
+  word-break:normal !important;
+}
+#page2 .smart-back-btn i{
+  flex:0 0 auto !important;
+  font-size:clamp(.62rem, 2.8vw, .82rem) !important;
+  line-height:1 !important;
+}
+@media(max-width:420px){
+  #page2 .smart-back-btn{
+    max-width:43% !important;
+    min-height:38px !important;
+    padding:6px 7px !important;
+    gap:4px !important;
+    font-size:.57rem !important;
+  }
+  #page2 .smart-back-btn i{font-size:.68rem !important}
+}
+</style>
+
 </head>
 <body>
     <!-- Flying Hearts Container -->
