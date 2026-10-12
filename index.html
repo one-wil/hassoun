@@ -8453,7 +8453,7 @@ input[placeholder*="الوصف"]{
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </div>
-                            ${(() => { const fq = getBuyXGetYFreeQuantityForItem(item.id); return fq > 0 ? `<div style="margin-top:4px;color:#087a4b;font-weight:800;font-size:.68rem;">🎁 ${fq} قطعة إضافية مجانًا — الإجمالي المستلم: ${(Number(item.quantity)||0) + fq}</div>` : ''; })()}
+                            ${(() => { const fq = getBuyXGetYFreeQuantityForItem(item.id); return fq > 0 ? `<div style="margin-top:4px;color:#087a4b;font-weight:800;font-size:.68rem;">🎁 عرض المنتج: ${fq} ${fq === 1 ? 'قطعة إضافية مجانية' : 'قطع إضافية مجانية'} (تُحتسب مرة واحدة على مجموع الكمية)</div>` : ''; })()}
                         </div>
                     </div>
                 `;
@@ -8834,19 +8834,19 @@ updateDeliveryCost();
         }
 
         function getBuyXGetYFreeQuantityForItem(itemId) {
+            // تُحتسب القطع المجانية على مجموع كمية المنتج نفسه، حتى لو توزعت
+            // القطع المدفوعة على ألوان/مقاسات مختلفة. نُظهر ونُسند المجاني
+            // إلى أول سطر لهذا المنتج فقط حتى لا يتكرر العرض أو العدد.
             if (!STORE_CONFIG.DISCOUNTS?.enableBuyXGetY) return 0;
-            const itemIndex = cartItems.findIndex(i => i.id === itemId);
+            const itemIndex = cartItems.findIndex(i => String(i.id) === String(itemId));
             if (itemIndex < 0) return 0;
             const item = cartItems[itemIndex];
             if (!isBuyXGetYEligible(item.key)) return 0;
-            const cfg = getBuyXGetYConfig();
-            const totalForProduct = cartItems.reduce((sum, i) => String(i.key) === String(item.key) ? sum + (Number(i.quantity) || 0) : sum, 0);
-            let remainingFree = Math.floor(totalForProduct / cfg.buy) * cfg.free;
-            for (let i = 0; i < itemIndex; i++) {
-                const prev = cartItems[i];
-                if (String(prev.key) === String(item.key)) remainingFree -= Math.min(Number(prev.quantity) || 0, Math.max(0, Math.floor(totalForProduct / cfg.group) * cfg.free));
-            }
-            return Math.max(0, Math.min(Number(item.quantity) || 0, remainingFree));
+            const firstProductIndex = cartItems.findIndex(i => String(i.key) === String(item.key));
+            if (itemIndex !== firstProductIndex) return 0;
+            const totalForProduct = cartItems.reduce((sum, i) =>
+                String(i.key) === String(item.key) ? sum + Math.max(0, Number(i.quantity) || 0) : sum, 0);
+            return calculateBuyXGetYFreeQuantity(totalForProduct);
         }
 
         function getBuyXGetYFreeQuantityByProduct(productKey) {
